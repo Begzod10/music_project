@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% block title %} {{ singer.name }} {% endblock %}
+{% block section %}
+    <section class="promo">
+        <div class="promo__singer">
+            <div class="container">
+                <div class="promo__singer_block">
+                    <div class="promo__singer_data">
+                        <div class="promo__singer_info">
+                            <div class="promo__singer_title">{{ singer.name }}</div>
+                            <div class="promo__singer_song">All the time</div>
+                            <div class="promo__singer_add">Added: 2022-03-14-17:54</div>
+                            <audio class="promo__singer_audio" src=""></audio>
+                        </div>
+                        <img class="promo__singer_logo" src="/static/img/song_logo/all_the_time.jpg" alt="">
+                    </div>
+                    <div class="promo__singer_buttons">
+                        <button id="menu_play">Play online</button>
+                        <button class="download_link"><a href="{{ url_for('download_mp3',music_id=1) }}">Download</a></button>
+                    </div>
+                </div>
+                <div class="promo__singer_others">
+                    <div class="promo__singer_arrow left">
+                        <i class="fas fa-chevron-circle-left"></i>
+                    </div>
+                    <div class="promo__singer_list">
+                        {% for sing in singers %}
+                            <a href="{{ url_for('singer_info',singer_id=sing.id) }}" class="promo__singer_list_link">
+                                <div class="promo__section_item promo__singer_list_item"
+                                     style="background: url({% if sing.photo %}/{{ sing.photo }}{% else %}
+                                         '/static/img/singers/miyagi panda.jpg'{% endif %})center center/cover">
+                                    <div class="promo__section_data">
+                                        <div class="promo__section_data_name">{{ sing.name }}</div>
+                                        <div class="promo__section_data_album">Albums: {{ sing.albums_len }}</div>
+                                        <div class="promo__section_data_musics">Musics: {{ sing.musics_len }}</div>
+                                        <div class="promo__section_data_rate">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <audio class="" hidden controls src="{{ sing.url }}"></audio>
+                            </a>
+                        {% endfor %}
+                    </div>
+                    <div class="promo__singer_arrow right">
+                        <i class="fas fa-chevron-circle-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="promo__music">
+            <div class="container">
+                <nav>
+                    <ul>
+                        <li><a href="">Popular Musics</a></li>
+                        <li><a href="">New Musics</a></li>
+                        <li><a href="">Expedita, odit?</a></li>
+                        <li><a href="">Optio, vitae.</a></li>
+                        <li><a href="">In, perferendis?</a></li>
+                    </ul>
+                </nav>
+                <div class="promo__music_list">
+                    {% for music in singer.musics %}
+                        <div class="promo__music_item">
+                            <div class="promo__music_icon play_all"><i class="fas fa-play-circle"></i></div>
+                            <div class="promo__music_img"><img src="/static/img/song_logo/all_the_time.jpg" alt="">
+                            </div>
+                            <div class="promo__music_info"><span><a
+                                    href="">{% if singer.name|length > 15 %}{{ singer.name[0:15] }}
+                                ...{% else %}{{ singer.name }}{% endif %}</a></span><span
+                                    class="music_names" data-id="{{ music.id }}" data-date="{{ music.added_date.strftime("%Y-%m-%d") }}"
+                                    data-text="{{ music.name }}">{% if music.name|length > 15 %}{{ music.name[0:15] }}
+                                ...{% else %}{{ music.name }}{% endif %}</span>
+                            </div>
+                            <div class="promo__music_duration">{{ music.duration }}</div>
+                            <div class="promo__music_bitrate">{{ music.bit_rate }}</div>
+                            <audio class="audios" hidden controls src="/{{ music.url }}"></audio>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block footer %}
+    <div class="container">
+        <div class="footer__block">
+            <div class="footer__block__controls">
+                <i class="fas fa-chevron-circle-left" id="left"></i>
+                <i class="fas fa-play-circle" id="play"></i>
+                <i class="fas fa-chevron-circle-right" id="right"></i>
+            </div>
+            <div class="footer__block__music">
+                <div class="footer__block__music_list">
+                    <div class="footer__block__music_title"><span class="active_singer">Miyagi & Andy Panda</span>:
+                        <span class="active_name">All the time</span></div>
+                    <div class="footer__block__music_duration" id="end_duration">4:34</div>
+                </div>
+                <div class="footer__block__music_block">
+                    <div class="footer__block__music_container"></div>
+                </div>
+            </div>
+            <div class="footer__block__info">
+                <div class="footer__block__info_list">
+                    <img class="footer__img" id="arrow" src="/static/icons/share-solid.svg" alt="">
+                    <i class="fas fa-star footer__icon"></i>
+                    <div class="footer__block__volume">
+                        <img src="/static/icons/volume-up-4-512.png" alt="" id="volume_img">
+                        <input type="range" min="0" max="100" value="90" id="volume_input">
+                        <p id="volume_show">90</p>
+                    </div>
+                </div>
+            </div>
+            <audio class="active_audio" src=""></audio>
+        </div>
+    </div>
+
+{% endblock %}
+{% block extra_js %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
+    <script src="/static/js/singer_info/singer_info.js"></script>
+{% endblock %}

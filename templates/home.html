@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+
+{% block section %}
+    <section class="promo">
+        <nav class="promo__menu">
+            <div class="container">
+                <div class="promo__menu_list">
+                    <div class="promo__menu_item">
+                        <div class="promo__menu_block">
+                            <div class="promo__menu_desc">
+                                Latest musics
+                            </div>
+                            <i class="fas fa-angle-right"></i>
+                        </div>
+                        <div class="promo__menu_links">
+                            <ul>
+                                <li><a href="#">March</a></li>
+                                <li><a href="#">February</a></li>
+                                <li><a href="#">January</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="promo__menu_item">
+                        <div class="promo__menu_block">
+                            <div class="promo__menu_desc">
+                                Latest musics
+                            </div>
+                            <i class="fas fa-angle-right"></i>
+                        </div>
+                        <div class="promo__menu_links">
+                            <ul>
+                                <li><a href="#">March</a></li>
+                                <li><a href="#">February</a></li>
+                                <li><a href="#">January</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="promo__menu_item">
+                        <div class="promo__menu_block">
+                            <div class="promo__menu_desc">
+                                Latest musics
+                            </div>
+                            <i class="fas fa-angle-right"></i>
+                        </div>
+                        <div class="promo__menu_links">
+                            <ul>
+                                <li><a href="#">March</a></li>
+                                <li><a href="#">February</a></li>
+                                <li><a href="#">January</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="promo__section">
+            <div class="container promo__extra">
+                <div class="promo__section_list">
+                    {% for singer in singers %}
+                        <a href="{{ url_for('singer_info',singer_id=singer.id) }}">
+                            <div class="promo__section_item"
+                                  style="background: url({% if singer.photo %}{{ singer.photo }}{% else %}'/static/img/singers/miyagi panda.jpg'{% endif %}) center center/cover">
+                                <div class="promo__section_data">
+                                    <div class="promo__section_data_name">{{ singer.name }}</div>
+                                    <div class="promo__section_data_album">Albums: {{ singer.albums_len }}</div>
+                                    <div class="promo__section_data_musics">Musics: {{ singer.musics_len }}</div>
+                                    <div class="promo__section_data_rate">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

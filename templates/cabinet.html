@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block section %}
+    <section class="promo insert">
+        <div class="container insert_2">
+            <div class="insert__main">
+                <div class="insert__category">
+                    <div class="insert__category_select">
+                        <button id="singer_block" class="insert__category_select_btn">Singer</button>
+                        <button id="category_block" class="insert__category_select_btn">Category</button>
+                        <button id="genre_block" class="insert__category_select_btn">Genre</button>
+                    </div>
+                    <div class="insert__category_block" id="category">
+
+                        <div class="insert__category_list list_categories">
+                            {% for category in categories %}
+                                <button class="category_btn" data-id="{{ category.id }}">{{ category.name }}</button>
+                            {% endfor %}
+                            <button class="new_category plus"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="insert__category_block" id="genres">
+
+                        <div class="insert__category_list list_categories">
+                            {% for genre in genres %}
+                                <button class="genre_button" data-id="{{ genre.id }}">{{ genre.name }}</button>
+                            {% endfor %}
+                            <button class="new_category plus"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="insert__category_block" id="singers">
+
+                        <div class="insert__category_list list_singers">
+                            {% for singer in singers %}
+                                <button class="singer_btn" data-id="{{ singer.id }}">{{ singer.name }}</button>
+                            {% endfor %}
+                            <button class="new_singer"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="insert__category_block" id="albums">
+
+                        <div class="insert__category_list list_albums">
+
+                            <button class="new_album plus"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="insert__line"></div>
+                <div class="insert__block">
+                    <div class="insert__block_list">
+                        <div class="insert__block_icon">
+                            <img src="/static/icons/file-audio.svg" alt="">
+                        </div>
+                        <form action="{{ url_for('cabinet') }}" method="post" enctype="multipart/form-data">
+                            <div class="insert__block_form">
+                                <div></div>
+                                <input type="file" hidden name="music_photo" id="input_photo" accept=".jpg,.png,.jpeg">
+                                <input type="file" hidden name="music" id="input" accept=".mp3">
+                                <input type="text" hidden name="singer_id" class="singer_id">
+                                <input type="text" hidden name="category_id" class="category_id">
+                                <input type="text" hidden name="genre_id" class="genre_id">
+                                <input type="text" hidden name="album_id">
+                                <p id="title">All the time</p>
+                                <input required type="text" name="title" class="title"
+                                       placeholder="Enter title of music">
+                                <p id="artist">Miyagi & Andy Panda</p>
+                                <input required type="text" name="artist" class="artist"
+                                       placeholder="Enter artist of music">
+                                <p id="album">All the time</p>
+                                <input required type="text" name="album" class="album"
+                                       placeholder="Enter album of music">
+                                <p id="genre">R&B/soul</p>
+                                <input required type="text" name="genre" class="genre"
+                                       placeholder="Enter genre of music">
+                                <p>Popular</p>
+                                <input type="text" name="category" class="category"
+                                       placeholder="Enter category of music">
+                                <button class="add_button">Add music</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block overlay %}
+    <div class="overlay">
+        <form action="#">
+            <div class="overlay_category">
+                <input type="text" required name="category" placeholder="Enter new category">
+                <button>Add</button>
+            </div>
+        </form>
+        <form action="{{ url_for('add_singer') }}" method="post" enctype="multipart/form-data">
+            <div class="overlay_singer">
+                <input type="text" name="name" placeholder="Nick Name or name">
+                <input type="file" name="singer_photo" accept=".jpg,.png,.jpeg">
+                <button>Add</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+{% block extra_js %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
+    <script src="/static/js/cabinet/cabinet.js"></script>
+{% endblock %}

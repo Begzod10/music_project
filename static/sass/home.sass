@@ -1,0 +1,823 @@
+@import "colors"
+@import "mixins"
+@import "animations"
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Smooch+Sans:wght@300;400&display=swap')
+.body
+  font-family: 'Smooch Sans', sans-serif
+  position: relative
+
+  &_active
+    height: 90vh
+    background: url("https://abrakadabra.fun/uploads/posts/2022-01/1642500415_5-abrakadabra-fun-p-strimerskaya-avatarka-na-rabochii-stol-6.jpg") center center/cover no-repeat
+
+.loader
+  position: fixed
+  width: 100vw
+  height: 100vh
+  left: 0
+  top: 0
+  //background: #26202a url("/static/img/song_logo/music-anim.gif") no-repeat center center
+  //background: rgba(230, 0, 255, 0.24) url("/static/img/song_logo/loader_neon.gif") no-repeat center center
+  //background: #0c0c0d url(/static/img/song_logo/loader3.gif) no-repeat center center
+  background: $neon_blue url(/static/img/song_logo/loader4.gif) no-repeat center center
+  z-index: 100
+  opacity: 1
+  background-size: 40%
+  transition: 0.5s opacity ease
+
+  &_end
+    opacity: 0
+
+
+.header
+  &_active
+    display: none
+  height: 10vh
+  @include border_bottom
+  background: $neon_blue
+
+  &_list
+    display: flex
+    justify-content: space-around
+    align-items: center
+    height: 56px
+    padding: 0 20px
+
+  a
+    display: flex
+    width: 150px
+    height: 100%
+    justify-content: space-around
+    align-items: center
+    text-decoration: none
+
+  &_logo
+    display: flex
+    width: 120px
+    height: 100%
+    justify-content: space-around
+    align-items: center
+
+    i
+      color: $basic_color
+
+    div
+      color: white
+      text-shadow: 0 0 3px $basic_color
+
+  &_search
+    display: flex
+    align-items: center
+
+    input
+      border: none
+      outline: none
+      width: 200px
+      padding-left: 5px
+
+    & > div
+      background-color: $neon_blue
+      width: 45px
+      height: 26px
+      display: flex
+      justify-content: center
+      align-items: center
+      cursor: pointer
+      transition: 0.4s all ease
+
+      i
+        color: $basic_color
+
+      &:hover
+        background-color: $basic_color
+
+      &:hover i
+        color: $neon_blue
+
+  &_favourite
+    display: flex
+
+    a
+      text-decoration: none
+      display: flex
+      justify-content: center
+      align-items: center
+      color: white
+
+      i
+        color: $basic_color
+
+      span
+        position: relative
+        left: 10px
+
+.promo
+  background: url("/static/img/background/background_girl.jpg") center center/cover no-repeat
+  display: flex
+
+  &_active
+    display: none
+
+  &__menu
+    @include background
+    height: 90vh
+    width: 20vw
+    @include border_right
+
+    &_item
+      position: relative
+      top: 10px
+
+    &_block
+      transition: 0.3s all ease-in
+      cursor: pointer
+      width: 100%
+      height: 30px
+      display: flex
+      justify-content: center
+      align-items: center
+      color: white
+
+      &:hover
+        background: rgba(230, 0, 255, 0.24)
+        color: $neon_blue
+
+      &:hover i
+        color: $neon_blue
+
+      i
+        color: $basic_color
+        position: relative
+        left: 10px
+
+    &_links
+      display: flex
+      flex-direction: column
+      align-items: center
+      justify-content: center
+      position: relative
+      overflow: hidden
+      transition: 0.5s all ease-in-out
+
+      ul
+        transition: 0.5s all ease-in-out
+        list-style: none
+        position: absolute
+        top: -100px
+
+        li
+          cursor: pointer
+
+          a
+            color: white
+            text-decoration: none
+
+        li:hover a
+          text-shadow: 0 0 0 $basic_color
+          color: black
+
+      &_active
+        transition: 0.5s all ease-in-out
+
+        ul
+          transition: 0.5s all ease-in-out
+          position: relative
+          top: 0
+
+  &__extra
+    display: flex
+    justify-content: center
+
+  &__section
+    width: 80vw
+    height: 90vh
+    @include background
+
+    &_list
+      display: flex
+      width: 90%
+      justify-content: space-between
+      flex-wrap: wrap
+      height: 72vh
+      overflow: auto
+
+    ::-webkit-scrollbar
+      width: 10px
+
+    ::-webkit-scrollbar-track
+      box-shadow: inset 0 0 5px grey
+
+    ::-webkit-scrollbar-thumb
+      background: rgba(230, 0, 255, 0.24)
+
+    ::-webkit-scrollbar-thumb:hover
+      background: $basic_color
+
+    &_item
+      width: 200px
+      height: 200px
+      border: 2px solid white
+      position: relative
+      overflow: hidden
+      cursor: pointer
+      margin-top: 5px
+
+      &:hover .promo__section_data
+        top: 0
+
+    &_data
+      width: 100%
+      height: 100%
+      background-color: $neon_blue
+      display: flex
+      flex-direction: column
+      align-items: center
+      justify-content: space-around
+      color: white
+      position: absolute
+      top: -100%
+      transition: 0.4s top ease-out
+
+  &__singer
+    height: 90vh
+    width: 36vw
+    @include border_right
+    @include background
+
+    &_block
+      width: 100%
+      height: 44vh
+      @include border_bottom
+      margin-top: 10px
+
+    &_data
+      display: flex
+      justify-content: space-around
+      color: white
+
+    &_logo
+      width: 150px
+      height: 150px
+      border-radius: 50%
+    &_info
+      width: 130px
+    &_buttons
+      display: flex
+      justify-content: space-around
+      margin-top: 20px
+
+      button
+        width: 20%
+        color: white
+        border: none
+        padding: 4px
+        border-radius: 4px
+        outline: none
+        transition: 0.2s ease-in-out all
+        a
+          text-decoration: none
+          color: $neon_blue
+
+        &:active
+          transform: scale(0.9)
+
+        &:first-child
+          &:hover
+            color: $basic_color
+          background: $neon_blue
+
+        &:last-child
+          background: $basic_color
+
+          &:hover
+            color: $neon_blue
+
+
+    &_others
+      display: flex
+      justify-content: center
+      align-items: center
+
+    &_list
+      display: flex
+      align-items: center
+      height: 40vh
+      width: 360px
+      overflow: hidden
+      position: relative
+
+      &_link
+        position: relative
+
+        transition: all 0.4s ease-out
+
+      &_item
+        width: 180px
+        height: 180px
+        position: relative
+
+    &_arrow
+      width: 30px
+      height: 30px
+      cursor: pointer
+      position: relative
+
+      &:first-child
+        left: -5px
+
+      &:last-child
+        left: 5px
+
+      i
+        font-size: 30px
+        color: $basic_color
+
+        &:hover
+          color: white
+
+  &__music
+    height: 90vh
+    width: 64vw
+    @include background
+
+    nav
+      height: 50px
+      border-bottom: 5px solid $basic_color
+
+      ul
+        align-items: center
+        list-style: none
+        display: flex
+        flex-flow: row
+        justify-content: space-around
+        height: 100%
+
+        li
+          a
+            text-decoration: none
+            color: white
+
+    &_list
+      display: flex
+      align-items: center
+      flex-flow: column
+      height: 440px
+      overflow: auto
+
+      @include scroll_bar
+
+    &_item
+      margin-top: 5px
+      display: flex
+      width: 54vw
+      justify-content: space-around
+      height: 50px
+      border-bottom: 1px solid $basic_color
+      align-items: center
+      transition: 0.4s all ease-out
+      color: white
+      cursor: pointer
+      &:hover
+        background: $color_background
+      &_active
+        border: 1px solid $basic_color
+    &_icon
+      cursor: pointer
+
+      i
+        font-size: 35px
+        color: $basic_color
+
+      &:hover
+        i
+          color: white
+
+    &_img
+      width: 35px
+      height: 35px
+
+      img
+        width: 100%
+        height: 100%
+
+    &_info
+      display: flex
+      flex-direction: column
+      width: 100px
+      justify-content: center
+      align-items: center
+    &_bitrate
+      display: flex
+      flex-direction: column
+      width: 100px
+      justify-content: center
+      align-items: center
+.insert
+
+  height: 90vh
+  position: relative
+  background: url('/static/img/background/boy_neon.jpg') center center/cover
+
+  &_2
+    position: relative
+    @include background
+
+  &__main
+    display: flex
+    justify-content: space-evenly
+    height: 100%
+  &__line
+    width: 5px
+    height: 100%
+    background: $basic_color
+  &__flash
+    display: flex
+    flex-direction: column
+    position: absolute
+    background: white
+    top: 10%
+    left: 50%
+    transform: translate(-50%, -10%)
+    width: 220px
+    height: 50px
+    align-items: center
+    justify-content: center
+
+    &_active
+      display: none
+
+    &_box
+      width: 100%
+      display: flex
+      align-items: center
+      justify-content: space-around
+
+      span
+        cursor: pointer
+
+    &_block
+      position: absolute
+      bottom: 0
+      left: 0
+      width: 220px
+      height: 5px
+      background: black
+
+    &_line
+      background: white
+      height: 100%
+      animation-name: flash
+      animation-duration: 3s
+      animation-timing-function: cubic-bezier(0.4, 0, 1, 1)
+      animation-play-state: running
+
+  &__category
+    width: 400px
+    &_select
+      display: flex
+      justify-content: space-evenly
+      margin-top: 10px
+
+      &_btn
+        @include overflow_button
+        background: $neon_blue
+        width: 100px
+        height: 50px
+
+        &:focus
+          background: $basic_color
+          color: $neon_blue
+
+        &_active
+          background: $basic_color !important
+          color: $neon_blue !important
+
+    &_block
+      display: none
+      flex-direction: column
+      margin-top: 10px
+
+      &_active
+        display: flex
+
+    &_header
+      align-self: center
+
+      div
+        font-size: larger
+        color: white
+
+    &_list
+      display: flex
+      justify-content: space-around
+      flex-wrap: wrap
+      height: 100px
+      overflow: auto
+
+      @include scroll_bar
+
+
+      button
+        @include overflow_button
+        background: $neon_blue
+        width: 10rem
+        height: 50px
+
+        &:focus
+          background: $basic_color
+          color: $neon_blue
+
+  &__block
+    display: flex
+    justify-content: center
+    height: 300px
+    overflow: auto
+    align-self: center
+
+    @include scroll_bar
+
+    &_list
+      display: flex
+      justify-content: space-around
+
+    &_icon
+      width: 100px
+      height: 100px
+      cursor: pointer
+      align-self: center
+      align-content: flex-start
+      border-radius: 10px
+      padding: 10px
+
+      img
+        width: 100%
+        height: 100%
+
+    &_form
+      width: 300px
+      display: flex
+      flex-direction: column
+      align-items: center
+      justify-content: space-around
+      color: white
+      padding: 10px
+
+      div
+        width: 100px
+        height: 100px
+        background: url("/static/img/song_logo/all_the_time.jpg")
+        background-size: 100%
+
+      input
+        @include overflow_input
+        display: none
+
+      &_active
+        background: black !important
+
+      button
+        position: relative
+        display: none
+        margin-top: 5px
+        @include overflow_button
+
+
+.footer
+  width: 100vw
+  height: 50px
+  background: $neon_blue
+  border-top: 5px solid $basic_color
+  position: absolute
+  bottom: 0
+  left: 0
+  color: white
+
+  &_active
+    display: none
+
+  &__block
+    display: flex
+    justify-content: space-around
+    align-items: center
+    height: 100%
+    &__volume
+      width: 250px
+      justify-content: space-around
+      display: flex
+      align-items: center
+      margin-left: 10px
+      input
+        margin-left: 10px
+      input[type=range]
+        -webkit-appearance: none
+        width: 100%
+        outline: none
+        height: 2px
+        &::-webkit-slider-thumb
+          -webkit-appearance: none
+          height: 20px
+          width: 20px
+          background: $basic_color
+          border-radius: 50%
+          cursor: pointer
+    &__controls
+      width: 200px
+      display: flex
+      justify-content: space-around
+      align-items: center
+      height: 45px
+
+      i
+        cursor: pointer
+        font-size: 30px
+        color: $basic_color
+
+        &:hover
+          color: white
+
+    &__music
+      display: flex
+      flex-direction: column
+
+      &_list
+        display: flex
+        width: 300px
+        justify-content: space-around
+        overflow: hidden
+        position: relative
+      &_title
+        animation-name: text_margin
+        animation-duration: 4s
+        animation-timing-function: linear
+        animation-iteration-count: infinite
+        animation-play-state: paused
+        &_active
+          animation-play-state: running
+      &_duration
+        position: absolute
+        right: 0
+      &_block
+        width: 300px
+        height: 4px
+        cursor: pointer
+        background: white
+
+      &_container
+        width: 0
+        height: 100%
+        background: $basic_color
+
+    &__info
+      width: 200px
+
+      &_list
+        display: flex
+        justify-content: space-around
+  &__img
+    width: 35px
+    height: 35px
+    cursor: pointer
+  &__icon
+    cursor: pointer
+    font-size: 30px
+    color: $basic_color
+
+    &:hover
+      color: white
+    &_active
+      color: white
+
+.overflow
+  width: 100vw
+  height: 100vh
+  position: fixed
+  left: 0
+  top: 0
+  background: $color_background
+  display: none
+  justify-content: center
+  transition: 0.7s opacity ease
+  align-items: center
+
+  &_active
+    opacity: 1
+    display: flex
+
+  &_login
+    width: 300px
+    height: 300px
+    @include overflow_form
+
+    &_active
+      display: flex
+
+    input
+      @include overflow_input
+
+    button
+      @include overflow_button
+
+  &_register
+    @include overflow_form
+    width: 400px
+    height: 400px
+
+    &_active
+      display: flex
+
+    input
+      @include overflow_input
+
+    button
+      @include overflow_button
+
+  &_link
+    width: 100%
+    display: flex
+    flex-direction: column
+    align-items: center
+    color: white
+
+    button
+      @include overflow_button
+
+
+  &_checkbox
+    display: flex
+    height: 40px
+    align-items: center
+    width: 130px
+    justify-content: space-between
+
+    input
+      width: 20px
+      height: 20px
+      border: none
+      outline: none
+
+    p
+      margin: 0
+      color: white
+
+
+.overlay
+  @include overlay
+
+  &_category
+    @include overflow_form
+    width: 200px
+    height: 200px
+
+    &_active
+      display: flex
+
+    input
+      @include overflow_input
+
+    button
+      @include overflow_button
+
+  &_singer
+    @include overflow_form
+    display: none
+    width: 300px
+    height: 300px
+
+    &_active
+      display: flex
+
+    input
+      @include overflow_input
+
+    button
+      @include overflow_button
+
+    textarea
+      width: 90%
+      border: none
+      resize: none
+      outline: none
+      background: transparent
+      color: white
+      padding: 5px
+      border-bottom: 1px solid $basic_color
+      transition: 0.5s all ease-in-out
+      @include scroll_bar
+
+      &:focus
+        background: black
+        border: 1px solid $basic_color
+
+      &::placeholder
+        color: white
+
+#volume_img
+  width: 30px
+  height: 30px
+  margin-left: 10px
+#volume_show
+  margin: 0
+  margin-left: 10px
+
+.plus
+  width: 100px !important
